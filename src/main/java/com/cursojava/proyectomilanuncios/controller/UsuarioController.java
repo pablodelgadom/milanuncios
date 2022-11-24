@@ -45,7 +45,7 @@ public class UsuarioController {
 			if (us.find_by_user(usuario.getUser()) != null && usuario_v.getUser().equals(u.getUser())
 					&& usuario_v.getPassword().equals(u.getPassword())) {
 				model.addAttribute("mensaje", "Logeado correctamente");
-				return "index";
+				return "panel_usuario";
 			} else
 				return "login";
 		}

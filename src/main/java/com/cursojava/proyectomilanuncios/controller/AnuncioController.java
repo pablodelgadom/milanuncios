@@ -39,7 +39,7 @@ public class AnuncioController {
 			anunciosdto.add(anunciodto);
 		}
 		model.addAttribute("anuncios", anunciosdto);
-		return "/listado_producto_by_categoria";
+		return "/listado_anuncio_by_categoria";
 
 	}
 	
