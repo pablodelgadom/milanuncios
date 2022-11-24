@@ -28,6 +28,12 @@ public class Usuario {
 	public Usuario() {
 		super();
 	}
+	
+	public Usuario(String user, String password) {
+		super();
+		this.user = user;
+		this.password = password;
+	}
 
 
 	public Usuario(String user, String email, String password) {

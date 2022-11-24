@@ -16,10 +16,10 @@ public class UsuarioService implements IUsuarioService {
 
 	@Autowired
 	RoleRepository rolerepository;
-	
+
 	@Autowired
 	UsuarioRepository usuariorepository;
-	
+
 	@Override
 	public List<Usuario> usuarios_by_categoria(String categoria) {
 
@@ -34,23 +34,21 @@ public class UsuarioService implements IUsuarioService {
 
 	@Override
 	public void delete(String user) {
-		
+
 		usuariorepository.deleteById(user);
 
 	}
 
 	@Override
 	public void save(Usuario usuario) {
-		
+
 		usuariorepository.save(usuario);
 
-		
 	}
 
 	@Override
 	public Usuario find_by_user(String user) {
-		
-		return null;
+		return usuariorepository.findById(user).orElse(null);
 	}
 
 }
