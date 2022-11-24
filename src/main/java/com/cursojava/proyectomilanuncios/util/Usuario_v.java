@@ -76,9 +76,6 @@ public class Usuario_v {
 		if (!StringUtils.hasText(email)) {
 			errors.rejectValue("email", "badFormat", "rellene el email");
 		}
-		if (!StringUtils.hasText(role)) {
-			errors.rejectValue("role", "badFormat", "rellene el role");
-		}
 
 		return errors.hasErrors();
 	}
