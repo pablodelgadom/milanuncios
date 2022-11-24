@@ -23,7 +23,7 @@ public class UsuarioController {
 
 	@Autowired
 	UsuarioService us;
-	
+
 	@Autowired
 	RoleService rs;
 
@@ -50,13 +50,13 @@ public class UsuarioController {
 				return "login";
 		}
 	}
-	
+
 	@GetMapping("/registerForm")
 	public String registerForm(Model model) {
 		model.addAttribute("usuario_v", new Usuario_v());
 		return "register";
 	}
-	
+
 	@PostMapping("/register")
 	public String register(Model model, Usuario_v usuario_v, BindingResult result) {
 		usuario_v.validate(result);
@@ -69,7 +69,7 @@ public class UsuarioController {
 				usuario.setUser(usuario_v.getUser());
 				usuario.setPassword(usuario_v.getPassword());
 				usuario.setEmail(usuario_v.getEmail());
-				Set<Role> roles = new HashSet();
+				Set<Role> roles = new HashSet<Role>();
 				Role rol = rs.find_by_role("us");
 				System.out.println(rol.getRole());
 				roles.add(rol);
