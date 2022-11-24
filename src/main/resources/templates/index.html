@@ -19,15 +19,18 @@
 				
 			</tr>
 		</thead>
+		
 		<tbody>
+		
 			<tr th:each="c : ${categorias}">
 				<td th:text="${c.id_categoria}"></td>
 				<td th:text="${c.descripcion}"></td>
-				<td><a th:href="@{|/ver_anuncios/${c.id_categoria}|}">Ver anuncios por categoria</a></td>
+				<td><a th:href="@{|/anuncios/byCategoria/${c.id_categoria}|}">Ver anuncios por categoria</a></td>
 			</tr>
 
 		</tbody>
 	</table>
+
 	<span th:text="${mensaje}"></span>
 </body>
 
