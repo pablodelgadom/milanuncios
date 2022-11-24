@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+	
 <head th:replace="Base :: head">	
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
@@ -7,6 +9,27 @@
 <body>
 
 <nav th:replace="Base :: nav"></nav>
+
+<body>
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">id categoria</th>
+				<th scope="col">descripcion</th>
+				
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="c : ${categorias}">
+				<td th:text="${c.id_categoria}"></td>
+				<td th:text="${c.descripcion}"></td>
+				<td><a th:href="@{|/ver_anuncios/${c.id_categoria}|}">Ver anuncios por categoria</a></td>
+			</tr>
+
+		</tbody>
+	</table>
+	<span th:text="${mensaje}"></span>
+</body>
 
 
 </body>
