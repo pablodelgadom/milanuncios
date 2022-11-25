@@ -2,6 +2,9 @@ package com.cursojava.proyectomilanuncios.util;
 
 import java.sql.Date;
 
+import org.springframework.util.StringUtils;
+import org.springframework.validation.Errors;
+
 public class Anuncio_v {
 	private String id_anuncio;
 	private String id_categoria;
@@ -82,6 +85,46 @@ public class Anuncio_v {
 
 	public void setUser(String user) {
 		this.user = user;
+	}
+	
+	public boolean validate(Errors errors) {
+		
+		if (StringUtils.hasText(id_anuncio)) {
+
+		} else {
+			errors.rejectValue("id_anuncio", "badFormat", "rellene el user");
+		}
+		if (StringUtils.hasText(id_categoria)) {
+
+		} else {
+			errors.rejectValue("id_categoria", "badFormat", "rellene el user");
+		}
+		if (StringUtils.hasText(fecha)) {
+
+		} else {
+			errors.rejectValue("fecha", "badFormat", "rellene el user");
+		}
+		if (StringUtils.hasText(titulo)) {
+
+		} else {
+			errors.rejectValue("titulo", "badFormat", "rellene el user");
+		}
+		if (StringUtils.hasText(descripcion)) {
+
+		} else {
+			errors.rejectValue("descripcion", "badFormat", "rellene el user");
+		}
+		if (StringUtils.hasText(precio)) {
+
+		} else {
+			errors.rejectValue("precio", "badFormat", "rellene el password");
+		}
+		if (StringUtils.hasText(user)) {
+
+		} else {
+			errors.rejectValue("user", "badFormat", "rellene el email");
+		}
+		return errors.hasErrors();
 	}
 	
 	

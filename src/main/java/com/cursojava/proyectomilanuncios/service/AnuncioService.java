@@ -59,7 +59,7 @@ public class AnuncioService implements IAnuncioService {
 	public List<Anuncio> find_anuncio_by_user(Usuario usuario) {
 		
 		return null;
-//		 return ar.find_anuncio_by_user(usuario);
+//		 return  ar.find_anuncio_by_user(usuario);
 
 	}
 
@@ -68,5 +68,13 @@ public class AnuncioService implements IAnuncioService {
 
 		return ar.findByTituloContainingIgnoreCase(titulo);
 	}
+
+	@Override
+	public void save(Anuncio anuncio) {
+		ar.save(anuncio);
+		
+	}
+
+	
 
 }
