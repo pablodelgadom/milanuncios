@@ -13,6 +13,15 @@
 		<form action="#" th:object="${categoria_v}" method="POST"
 			th:action="@{/categorias/update}" class="form-horizontal">
 			<!-- Account Number field -->
+			
+			<div class="form-group">
+				<label for="id_categoria" class="control-label col-xs-2">ID
+				</label> <input type="text" class="form-control" id="id_categoria"
+					th:field="*{id_categoria}" style="width: 10em;" readonly/> <span
+					th:if="${#fields.hasErrors('id_categoria')}"
+					style="color: red; font-size: smaller" th:errors="*{id_categoria}"></span>
+
+			</div>
 
 			<div class="form-group">
 				<label for="descripcion" class="control-label col-xs-2">Descripcion

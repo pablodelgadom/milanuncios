@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.cursojava.proyectomilanuncios.dto.CategoriaDTO;
 import com.cursojava.proyectomilanuncios.interfaces.ICategoriaService;
 import com.cursojava.proyectomilanuncios.model.Categoria;
+import com.cursojava.proyectomilanuncios.service.CategoriaService;
 import com.cursojava.proyectomilanuncios.util.Categoria_v;
 
 @Controller
@@ -22,7 +23,7 @@ import com.cursojava.proyectomilanuncios.util.Categoria_v;
 public class CategoriaController {
 	
 	@Autowired
-	ICategoriaService categoriaService;
+	CategoriaService categoriaService;
 	
 	@GetMapping("/listAll")
 	public String list_all_categorias(Model model) {
@@ -57,23 +58,22 @@ public class CategoriaController {
 	}
 
 	@PostMapping("/create")
-	public String register(Model model, Categoria_v categoria_v, BindingResult result) {
+	public String create(Model model, Categoria_v categoria_v, BindingResult result) {
 		categoria_v.validate(result);
 		if (result.hasErrors()) {
 			return "categoria_create";
 		} else {
-			if (categoriaService.find_by_id(Integer.parseInt(categoria_v.getId_categoria())) == null) {
-				Categoria categoria = new Categoria();
-				categoria.setDescripcion(categoria_v.getDescripcion());
-				categoriaService.save(categoria);
-				return list_all_categorias(model);
-
+			Categoria alumno = new Categoria(Integer.parseInt(categoria_v.getId_categoria()), categoria_v.getDescripcion());
+			if (categoriaService.find_by_id(Integer.parseInt(categoria_v.getId_categoria())) != null) {
+				model.addAttribute("mensaje", "Categoria ya existe");
 			} else {
-				Categoria categoria = new Categoria();
-				categoria.setDescripcion(categoria_v.getDescripcion());
-				categoriaService.save(categoria);
+				categoriaService.save(alumno);
+				model.addAttribute("categoria_v", new Categoria_v());
+				model.addAttribute("mensaje", "Categoria dada de alta correctamente");
 				return list_all_categorias(model);
 			}
+
+			return "categoria_create";
 		}
 	}
 	

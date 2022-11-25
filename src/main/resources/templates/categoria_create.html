@@ -8,15 +8,19 @@
 
 	<nav th:replace="Base :: nav"></nav>
 
-<div class="container">
+	<div class="container">
 
 		<form action="#" th:object="${categoria_v}" method="POST"
 			th:action="@{/categorias/create}" class="form-horizontal">
 			<!-- Account Number field -->
+			<div>
+				<input type="hidden" th:field="*{id_categoria}" class="form-control" id="id_categoria"
+					placeholder="Enter id">
+			</div>
 
 			<div class="form-group">
 				<label for="descripcion" class="control-label col-xs-2">Descripcion
-				</label> <input type="text" class="form-control" id="password"
+				</label> <input type="text" class="form-control" id="descripcion"
 					th:field="*{descripcion}" style="width: 10em;" /> <span
 					th:if="${#fields.hasErrors('descripcion')}"
 					style="color: red; font-size: smaller" th:errors="*{descripcion}"></span>
