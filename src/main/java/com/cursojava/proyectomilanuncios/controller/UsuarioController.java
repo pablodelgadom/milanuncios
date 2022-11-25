@@ -1,9 +1,9 @@
 package com.cursojava.proyectomilanuncios.controller;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,13 +36,16 @@ public class UsuarioController {
 	}
 
 	@PostMapping("/login")
-	public String login(Model model, Usuario_v usuario_v, BindingResult result) {
+	public String login(Model model, Usuario_v usuario_v, BindingResult result, HttpSession sesion) {
 		usuario_v.validateLogin(result);
 		if (result.hasErrors()) {
 			return "login";
 		} else {
 			Usuario usuario = new Usuario(usuario_v.getUser(), usuario_v.getPassword());
 			Usuario u = us.find_by_user(usuario.getUser());
+			sesion.setAttribute("user", u);
+			Usuario u2 = (Usuario) sesion.getAttribute("user");
+			System.out.println(u2.getUser());
 			System.out.println(u.getEmail());
 			Set<Role> roles = u.getRoles();
 			Role r = new Role();

@@ -3,6 +3,8 @@ package com.cursojava.proyectomilanuncios.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.cursojava.proyectomilanuncios.dto.CategoriaDTO;
 import com.cursojava.proyectomilanuncios.interfaces.ICategoriaService;
 import com.cursojava.proyectomilanuncios.model.Categoria;
+import com.cursojava.proyectomilanuncios.model.Usuario;
 import com.cursojava.proyectomilanuncios.service.CategoriaService;
 import com.cursojava.proyectomilanuncios.util.Categoria_v;
 
@@ -58,7 +61,7 @@ public class CategoriaController {
 	}
 
 	@PostMapping("/create")
-	public String create(Model model, Categoria_v categoria_v, BindingResult result) {
+	public String create(Model model, Categoria_v categoria_v, BindingResult result, HttpSession sesion) {
 		categoria_v.validate(result);
 		if (result.hasErrors()) {
 			return "categoria_create";
