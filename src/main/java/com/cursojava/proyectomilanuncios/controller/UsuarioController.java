@@ -48,7 +48,7 @@ public class UsuarioController {
 			System.out.println(u2.getUser());
 			System.out.println(u.getEmail());
 			Set<Role> roles = u.getRoles();
-			Role r = new Role();
+			Role r = new Role(); 
 			for (Role role : roles) {
 				System.out.println(role);
 				r.setRole(role.getRole());
