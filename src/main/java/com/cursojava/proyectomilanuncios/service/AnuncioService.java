@@ -10,6 +10,7 @@ import com.cursojava.proyectomilanuncios.model.Anuncio;
 import com.cursojava.proyectomilanuncios.model.Categoria;
 import com.cursojava.proyectomilanuncios.repository.AnuncioRepository;
 import com.cursojava.proyectomilanuncios.repository.CategoriaRepository;
+import com.cursojava.proyectomilanuncios.repository.UsuarioRepository;
 
 @Service
 public class AnuncioService implements IAnuncioService {
@@ -19,6 +20,11 @@ public class AnuncioService implements IAnuncioService {
 
 	@Autowired
 	CategoriaRepository cr;
+	
+	@Autowired
+	UsuarioRepository usuariorepository;
+	
+	
 
 	@Override
 	public List<Anuncio> find_by_id_categoria(int id) {
@@ -39,6 +45,14 @@ public class AnuncioService implements IAnuncioService {
 	public void delete_by_id(int id) {
 		ar.deleteById(id);
 
+	}
+
+	@Override
+	public List<Anuncio> list_all_by_user(String user) {
+		
+//		Anuncio anuncio = 
+
+		return null;
 	}
 
 }
