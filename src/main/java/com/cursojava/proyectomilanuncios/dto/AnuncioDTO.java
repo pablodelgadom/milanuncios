@@ -6,7 +6,7 @@ public class AnuncioDTO {
 	
 	private int id_anuncio;
 	private int id_categoria;
-	private Date fecha;
+	private String fecha;
 	private String titulo;
 	private String descripcion;
 	private double precio;
@@ -18,7 +18,7 @@ public class AnuncioDTO {
 	}
 
 
-	public AnuncioDTO(int id_anuncio, int id_categoria, Date fecha, String titulo, String descripcion, double precio,
+	public AnuncioDTO(int id_anuncio, int id_categoria, String fecha, String titulo, String descripcion, double precio,
 			String user) {
 		super();
 		this.id_anuncio = id_anuncio;
@@ -51,12 +51,12 @@ public class AnuncioDTO {
 	}
 
 
-	public Date getFecha() {
+	public String getFecha() {
 		return fecha;
 	}
 
 
-	public void setFecha(Date fecha) {
+	public void setFecha(String fecha) {
 		this.fecha = fecha;
 	}
 

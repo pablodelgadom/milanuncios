@@ -110,24 +110,24 @@ public class AnuncioController {
 
 	}
 	
-//	@PostMapping("/grabar_anuncio")
-//	public  String grabar_anuncio(Model model, Anuncio_v anuncio_v, BindingResult result) {
-//		anuncio_v.validate(result);
-//			if(result.hasErrors()) {
-//				return "anuncio_created";
-//			}else {
-////				
-////				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-////				Date  fecha = format.parse(anuncio_v.getFecha());
-//				
-//				Anuncio anuncio = new Anuncio(Integer.parseInt(anuncio_v.getId_anuncio()),Integer.parseInt(anuncio_v.getId_categoria()),anuncio_v.getFecha(),anuncio_v.getTitulo(),anuncio_v.getDescripcion(),Double.parseDouble(anuncio_v.getPrecio()),anuncio_v.getUser());
-//				anuncioService.save(anuncio);
-//
-//			}
-//			model.addAttribute("anuncio_v", new Anuncio_v());
-//			return "/panel_usuario";
-//			
-//	}
+	@PostMapping("/grabar_anuncio")
+	public  String grabar_anuncio(Model model, Anuncio_v anuncio_v, BindingResult result) {
+		anuncio_v.validate(result);
+			if(result.hasErrors()) {
+				return "anuncio_created";
+			}else {
+				
+//				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+//				Date  fecha = (Date) format.parse(anuncio_v.getFecha());
+				
+				Anuncio anuncio = new Anuncio(Integer.parseInt(anuncio_v.getId_anuncio()),Integer.parseInt(anuncio_v.getId_categoria()),anuncio_v.getFecha(),anuncio_v.getTitulo(),anuncio_v.getDescripcion(),Double.parseDouble(anuncio_v.getPrecio()),anuncio_v.getUser());
+				anuncioService.save(anuncio);
+
+			}
+			model.addAttribute("anuncio_v", new Anuncio_v());
+			return "/panel_usuario";
+			
+	}
 		
 	
 	
