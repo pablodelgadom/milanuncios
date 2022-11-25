@@ -1,0 +1,98 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous">
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="container">
+
+		<form action="#" th:object="${anuncio_v}" method="POST"
+			th:action="@{/grabar_usuario2}" class="form-horizontal">
+			<!-- Account Number field -->
+			<div class="form-group">
+				<label for="number">Id_anuncio</label> <input type="text"
+					class="form-control" id="id_alumno" th:field="*{id_anuncio}"
+					style="width: 10em;" /> <span th:if="${#fields.hasErrors('id_anuncio')}"
+					style="color: red; font-size: smaller" th:errors="*{id_anuncio}">Incorrect
+					data</span>
+			</div>
+
+
+			<div class="form-group">
+				<label for="descripcion" class="control-label col-xs-2">Id_categoria
+				</label> <input type="text" class="form-control" id="nombre"
+					th:field="*{id_categoria}" style="width: 10em;" /> <span
+					th:if="${#fields.hasErrors('id_categoria')}"
+					style="color: red; font-size: smaller" th:errors="*{id_categoria}"></span>
+
+			</div>
+
+			<!-- Owner name field -->
+			<div class="form-group">
+				<label for="id" class="control-label col-xs-2">Fecha </label> <input
+					type="text" class="form-control" id="id" th:field="*{fecha}"
+					style="width: 10em;" /> <span
+					th:if="${#fields.hasErrors('fecha')}"
+					style="color: red; font-size: smaller" th:errors="*{fecha}"></span>
+
+			</div>
+			<!-- Owner name field -->
+			<div class="form-group">
+				<label for="id" class="control-label col-xs-2">Titulo </label> <input
+					type="text" class="form-control" id="id" th:field="*{titulo}"
+					style="width: 10em;" /><span
+					th:if="${#fields.hasErrors('titulo')}"
+					style="color: red; font-size: smaller" th:errors="*{titulo}"></span>
+
+
+			</div>
+			<div class="form-group">
+				<label for="id" class="control-label col-xs-2">Descripcion </label> <input
+					type="text" class="form-control" id="id" th:field="*{descripcion}"
+					style="width: 10em;" /><span
+					th:if="${#fields.hasErrors('descripcion')}"
+					style="color: red; font-size: smaller" th:errors="*{descripcion}"></span>
+
+
+			</div>
+			<div class="form-group">
+				<label for="id" class="control-label col-xs-2">Precio </label> <input
+					type="text" class="form-control" id="id" th:field="*{precio}"
+					style="width: 10em;" /><span
+					th:if="${#fields.hasErrors('precio')}"
+					style="color: red; font-size: smaller" th:errors="*{precio}"></span>
+
+
+			</div>
+			<div class="form-group">
+				<label for="id" class="control-label col-xs-2">Usuario </label> <input
+					type="text" class="form-control" id="id" th:field="*{user}"
+					style="width: 10em;" /><span
+					th:if="${#fields.hasErrors('user')}"
+					style="color: red; font-size: smaller" th:errors="*{user}"></span>
+
+
+			</div>
+			<!-- Submit button -->
+			<div class="form-group">
+				<div class="col-xs-offset-2 col-xs-10">
+					<button type="submit" class="btn btn-primary">GRABAR</button>
+				</div>
+			</div>
+			<a class="button" th:href="@{/}">CANCELAR</a><br>
+			<div class="form-group">
+				<span th:text="${mensaje}"></span>
+			</div>
+		</form>
+
+		<br> <a th:href="@{/}">ir a menu</a>
+	</div>
+</body>
+</html>

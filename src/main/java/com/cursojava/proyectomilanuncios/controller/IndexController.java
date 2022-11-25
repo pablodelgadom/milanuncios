@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.cursojava.proyectomilanuncios.dto.CategoriaDTO;
 import com.cursojava.proyectomilanuncios.interfaces.ICategoriaService;
 import com.cursojava.proyectomilanuncios.model.Categoria;
+import com.cursojava.proyectomilanuncios.util.FindAnuncioForm;
 
 
 @Controller
@@ -31,8 +32,11 @@ public class IndexController {
 			categoriasdto.add(categoriadto);
 		}
 		model.addAttribute("categorias", categoriasdto);
+		model.addAttribute("findAnuncioForm", new FindAnuncioForm());
 		return "index";
 	}
+	
+	
 	
 	
 	

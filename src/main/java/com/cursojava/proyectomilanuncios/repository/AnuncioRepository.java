@@ -12,7 +12,8 @@ import com.cursojava.proyectomilanuncios.model.Usuario;
 
 public interface AnuncioRepository extends CrudRepository<Anuncio, Integer>{
 
-//	@Query(value= "SELECT * FROM anuncios WHERE user=?1")
-//	List<Anuncio> find_anuncio_by_user(Usuario usuario);
+	public List<Anuncio> findByTituloContainingIgnoreCase(String texto);
+
+
 	
 }

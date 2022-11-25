@@ -63,4 +63,10 @@ public class AnuncioService implements IAnuncioService {
 
 	}
 
+	@Override
+	public List<Anuncio> find_constaint_by_titulo(String titulo) {
+
+		return ar.findByTituloContainingIgnoreCase(titulo);
+	}
+
 }

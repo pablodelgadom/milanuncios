@@ -1,31 +1,42 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
-	
-<head th:replace="Base :: head">	
+
+<head th:replace="Base :: head">
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
 <body>
 
-<nav th:replace="Base :: nav"></nav>
-
+	<nav th:replace="Base :: nav"></nav>
 <body>
+	<form action="#" th:object="${findAnuncioForm}" method="POST"
+		th:action="@{/anuncios/buscar_anuncios}" class="form-horizontal">
+		<!-- Account Number field -->
+		<div class="form-group">
+			<label for="number">Que necesita:</label> <input type="text"
+				class="form-control" id="texto" th:field="*{texto}"
+				style="width: 10em;" />
+			<button type="submit" class="btn btn-primary">buscar</button>
+		</div>
+
+	</form>
 	<table class="table">
 		<thead>
 			<tr>
 				<th scope="col">id categoria</th>
 				<th scope="col">descripcion</th>
-				
+
 			</tr>
 		</thead>
-		
+
 		<tbody>
-		
+
 			<tr th:each="c : ${categorias}">
 				<td th:text="${c.id_categoria}"></td>
 				<td th:text="${c.descripcion}"></td>
-				<td><a th:href="@{|/anuncios/byCategoria/${c.id_categoria}|}">Ver anuncios por categoria</a></td>
+				<td><a th:href="@{|/anuncios/byCategoria/${c.id_categoria}|}">Ver
+						anuncios por categoria</a></td>
 			</tr>
 
 		</tbody>
