@@ -11,5 +11,6 @@ public interface ICategoriaService {
 	public void delete_categoria_by_id(int id_categoria);
 	public Categoria save(Categoria c);
 	//public void Categoria(Categoria c);
+	public Categoria find_by_id(int id_categoria);
 
 }

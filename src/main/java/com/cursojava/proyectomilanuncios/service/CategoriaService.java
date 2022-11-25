@@ -30,4 +30,11 @@ public class CategoriaService implements ICategoriaService{
 		return cr.save(c);
 	}
 
+	@Override
+	public Categoria find_by_id(int id_categoria) {
+		return cr.findById(id_categoria).orElse(null);
+	}
+	
+	
+
 }

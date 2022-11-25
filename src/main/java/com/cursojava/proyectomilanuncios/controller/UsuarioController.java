@@ -61,7 +61,6 @@ public class UsuarioController {
 	public String register(Model model, Usuario_v usuario_v, BindingResult result) {
 		usuario_v.validate(result);
 		if (result.hasErrors()) {
-			System.out.println("Hola1");
 			return "register";
 		} else {
 			if (us.find_by_user(usuario_v.getUser()) == null) {
@@ -75,13 +74,11 @@ public class UsuarioController {
 				roles.add(rol);
 				usuario.setRoles(roles);
 				us.save(usuario);
-				System.out.println("Hola2");
 				return "login";
 
 			} else {
 				// result.rejectValue("id_alumno","alumno ya existe");
 				result.rejectValue("user", "badFormat", "user ya existe");
-				System.out.println("Hola3");
 				return "register";
 			}
 		}

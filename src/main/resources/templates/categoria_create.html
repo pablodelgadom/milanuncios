@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+<div class="container">
+
+		<form action="#" th:object="${categoria_v}" method="POST"
+			th:action="@{/categorias/create}" class="form-horizontal">
+			<!-- Account Number field -->
+
+			<div class="form-group">
+				<label for="descripcion" class="control-label col-xs-2">Descripcion
+				</label> <input type="text" class="form-control" id="password"
+					th:field="*{descripcion}" style="width: 10em;" /> <span
+					th:if="${#fields.hasErrors('descripcion')}"
+					style="color: red; font-size: smaller" th:errors="*{descripcion}"></span>
+
+			</div>
+
+			<!-- Submit button -->
+			<div class="form-group">
+				<div class="col-xs-offset-2 col-xs-10">
+					<button type="submit" class="btn btn-primary">Crear</button>
+				</div>
+			</div>
+			<a class="button" th:href="@{/}">CANCELAR</a><br>
+			<div class="form-group">
+				<span th:text="${mensaje}"></span>
+			</div>
+		</form>
+
+	</div>
+
+</body>
+</html>

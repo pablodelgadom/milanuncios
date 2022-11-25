@@ -72,6 +72,8 @@ public class AnuncioController {
 		return panelAdmin(model);
 
 	}
+	
+	
 
 	@GetMapping("/anuncio_created")
 	public String alta_anuncio(Model model) {
