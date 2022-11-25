@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="Base :: head">
+
+<nav th:replace="Base :: nav"></nav>
+
+<body>
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">Id Anuncio</th>
+				<th scope="col">Id Categoria</th>
+				<th scope="col">Fecha</th>
+				<th scope="col">Titulo</th>
+				<th scope="col">Descripcion</th>
+				<th scope="col">Precio</th>
+				<th scope="col">User</th>
+
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="p : ${anuncios}">
+				<td th:text="${p.id_anuncio}"></td>
+				<td th:text="${p.id_categoria}"></td>
+				<td th:text="${p.fecha}"></td>
+				<td th:text="${p.titulo}"></td>
+				<td th:text="${p.descripcion}"></td>
+				<td th:text="${p.precio}"></td>
+				<td th:text="${p.user}"></td>
+
+
+
+			</tr>
+
+		</tbody>
+	</table>
+</body>
+
+</html>
