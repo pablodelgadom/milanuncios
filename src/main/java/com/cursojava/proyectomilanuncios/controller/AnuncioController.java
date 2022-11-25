@@ -55,5 +55,18 @@ public class AnuncioController {
 		model.addAttribute("anuncios", anunciosdto);
 		return "panel_admin";
 	}
+	
+	@GetMapping("/delete/{id_anuncio}")
+	public String delete_categoria(@PathVariable("id_anuncio") int id_anuncio, Model model) {
+		try {
+			anuncioService.delete_by_id(id_anuncio);
+		} catch (Exception e) {
+			System.out.println(e);
+			model.addAttribute("mensaje", "no se puede borrar la categoria");
+		}
+
+		return panelAdmin(model);
+
+	}
 
 }

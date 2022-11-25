@@ -3,8 +3,12 @@
 <head th:replace="Base :: head">
 
 <nav th:replace="Base :: nav"></nav>
-
 <body>
+
+	<button>
+		<a th:href="@{|/anuncios/create|}">Crear anuncio</a>
+	</button>
+
 	<table class="table">
 		<thead>
 			<tr>
@@ -15,18 +19,25 @@
 				<th scope="col">Descripcion</th>
 				<th scope="col">Precio</th>
 				<th scope="col">User</th>
+				<th scope="col">Acciones</th>
 
 			</tr>
 		</thead>
 		<tbody>
-			<tr th:each="p : ${anuncios}">
-				<td th:text="${p.id_anuncio}"></td>
-				<td th:text="${p.id_categoria}"></td>
-				<td th:text="${p.fecha}"></td>
-				<td th:text="${p.titulo}"></td>
-				<td th:text="${p.descripcion}"></td>
-				<td th:text="${p.precio}"></td>
-				<td th:text="${p.user}"></td>
+			<tr th:each="a : ${anuncios}">
+				<td th:text="${a.id_anuncio}"></td>
+				<td th:text="${a.id_categoria}"></td>
+				<td th:text="${a.fecha}"></td>
+				<td th:text="${a.titulo}"></td>
+				<td th:text="${a.descripcion}"></td>
+				<td th:text="${a.precio}"></td>
+				<td th:text="${a.user}"></td>
+				<td><button>
+						<a th:href="@{|/anuncios/delete/${a.id_anuncio}|}">Borrar
+							anuncio</a>
+					</button>
+					<a th:href="@{|anuncios/update/${a.id_anuncio}|}">Actualizar
+						anuncio</a></td>
 
 
 
@@ -34,6 +45,10 @@
 
 		</tbody>
 	</table>
+
+	<br>
+	<a href="/categorias/listAll">Categorias</a>
+
 </body>
 
 </html>

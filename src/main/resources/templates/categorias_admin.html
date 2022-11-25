@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="Base :: head">
+
+<nav th:replace="Base :: nav"></nav>
+<body>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">id categoria</th>
+				<th scope="col">descripcion</th>
+				<th scope="col">Action</th>
+
+			</tr>
+		</thead>
+
+		<tbody>
+
+			<tr th:each="c : ${categorias}">
+				<td th:text="${c.id_categoria}"></td>
+				<td th:text="${c.descripcion}"></td>
+				<td><Button>
+						<a th:href="@{|/categorias/delete/${c.id_categoria}|}">Borrar anuncio</a>
+					</Button>
+					<Button>
+						<a th:href="@{|/categorias/update/${c.id_categoria}|}">Actualizar anuncio</a>
+					</Button></td>
+			</tr>
+
+		</tbody>
+	</table>
+
+</body>
+</html>
