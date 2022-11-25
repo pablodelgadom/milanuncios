@@ -73,6 +73,7 @@ public class Anuncio_v {
 
 	public void setPrecio(String precio) {
 		this.precio = precio;
+		
 	}
 
 	public String getUser() {
