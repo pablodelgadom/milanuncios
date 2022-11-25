@@ -1,9 +1,7 @@
 package com.cursojava.proyectomilanuncios.controller;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -64,19 +62,39 @@ public class CategoriaController {
 		if (result.hasErrors()) {
 			return "categoria_create";
 		} else {
-			if (categoriaService.find_by_id(categoria_v.getId_categoria()) == null) {
+			if (categoriaService.find_by_id(Integer.parseInt(categoria_v.getId_categoria())) == null) {
 				Categoria categoria = new Categoria();
 				categoria.setDescripcion(categoria_v.getDescripcion());
 				categoriaService.save(categoria);
 				return list_all_categorias(model);
 
 			} else {
-				result.rejectValue("categoria", "badFormat", "Categoria ya existe");
-				return "categoria_create";
+				Categoria categoria = new Categoria();
+				categoria.setDescripcion(categoria_v.getDescripcion());
+				categoriaService.save(categoria);
+				return list_all_categorias(model);
 			}
 		}
 	}
 	
+	@GetMapping("/editar/{id_categoria}")
+	public String editar_categoria(@PathVariable("id_categoria") int id_categoria, Model model) {
+		Categoria c = categoriaService.find_by_id(id_categoria);
+		model.addAttribute("categoria_v", new Categoria_v(""+c.getId_categoria(), c.getDescripcion()));
+		return "categoria_update";
+	}
 	
+	@PostMapping("/update")
+	public String modificar(Model model, Categoria_v categoria_v, BindingResult result) {
+		categoria_v.validate(result);
+		if (!result.hasErrors()) {
+			Categoria c = new Categoria(Integer.parseInt(categoria_v.getId_categoria()), categoria_v.getDescripcion());
+			categoriaService.save(c);
+			model.addAttribute("categoria_v", new Categoria_v());
+			model.addAttribute("mensaje", "modificado correctamente");
+			return list_all_categorias(model);
+		}
+		return "editar_alumno";
+	}
 
 }

@@ -23,10 +23,10 @@
 				<td th:text="${c.id_categoria}"></td>
 				<td th:text="${c.descripcion}"></td>
 				<td><Button>
-						<a th:href="@{|/categorias/delete/${c.id_categoria}|}">Borrar anuncio</a>
+						<a th:href="@{|/categorias/delete/${c.id_categoria}|}">Borrar categoria</a>
 					</Button>
 					<Button>
-						<a th:href="@{|/categorias/update/${c.id_categoria}|}">Actualizar anuncio</a>
+						<a th:href="@{|/categorias/editar|${c.id_categoria|}">Actualizar categoria</a>
 					</Button></td>
 			</tr>
 

@@ -5,7 +5,7 @@ import org.springframework.validation.Errors;
 
 public class Categoria_v {
 
-	private int id_categoria;
+	private String id_categoria;
 	private String descripcion;
 
 	public Categoria_v() {
@@ -13,17 +13,17 @@ public class Categoria_v {
 
 	}
 
-	public Categoria_v(int id_categoria, String descripcion) {
+	public Categoria_v(String id_categoria, String descripcion) {
 		super();
 		this.id_categoria = id_categoria;
 		this.descripcion = descripcion;
 	}
 
-	public int getId_categoria() {
+	public String getId_categoria() {
 		return id_categoria;
 	}
 
-	public void setId_categoria(int id_categoria) {
+	public void setId_categoria(String id_categoria) {
 		this.id_categoria = id_categoria;
 	}
 

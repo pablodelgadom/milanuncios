@@ -28,16 +28,11 @@ public class Categoria {
 
 	}
 
-
-
-	public Categoria(int id_categoria, String descripcion, List<Anuncio> anuncios) {
+	public Categoria(int id_categoria, String descripcion) {
 		super();
 		this.id_categoria = id_categoria;
 		this.descripcion = descripcion;
-		this.anuncios = anuncios;
 	}
-
-
 
 	public int getId_categoria() {
 		return id_categoria;
@@ -55,18 +50,12 @@ public class Categoria {
 		this.descripcion = descripcion;
 	}
 
-
-
 	public List<Anuncio> getAnuncios() {
 		return anuncios;
 	}
-
-
 
 	public void setAnuncios(List<Anuncio> anuncios) {
 		this.anuncios = anuncios;
 	}
 
-	
-	
 }

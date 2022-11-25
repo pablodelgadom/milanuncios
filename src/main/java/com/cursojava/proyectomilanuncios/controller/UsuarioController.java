@@ -1,6 +1,8 @@
 package com.cursojava.proyectomilanuncios.controller;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,13 +44,28 @@ public class UsuarioController {
 			Usuario usuario = new Usuario(usuario_v.getUser(), usuario_v.getPassword());
 			Usuario u = us.find_by_user(usuario.getUser());
 			System.out.println(u.getEmail());
+			Set<Role> roles = u.getRoles();
+			Role r = new Role();
+			for (Role role : roles) {
+				System.out.println(role);
+				r.setRole(role.getRole());
+				r.setFunciones(role.getFunciones());
+			}
 			if (us.find_by_user(usuario.getUser()) != null && usuario_v.getUser().equals(u.getUser())
 					&& usuario_v.getPassword().equals(u.getPassword())) {
 				model.addAttribute("mensaje", "Logeado correctamente");
-				return "panel_usuario";
+				System.out.println(r.getRole());
+				if (r.getRole().equals("admin")) {
+					return "panel_admin";
+				}
+				if (r.getRole().equals("us")) {
+					return "panel_usuario";
+				}
+
 			} else
 				return "login";
 		}
+		return "login";
 	}
 
 	@GetMapping("/registerForm")
