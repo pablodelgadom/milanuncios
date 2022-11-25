@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.cursojava.proyectomilanuncios.interfaces.IAnuncioService;
 import com.cursojava.proyectomilanuncios.model.Anuncio;
 import com.cursojava.proyectomilanuncios.model.Categoria;
+import com.cursojava.proyectomilanuncios.model.Usuario;
 import com.cursojava.proyectomilanuncios.repository.AnuncioRepository;
 import com.cursojava.proyectomilanuncios.repository.CategoriaRepository;
 import com.cursojava.proyectomilanuncios.repository.UsuarioRepository;
@@ -50,9 +51,16 @@ public class AnuncioService implements IAnuncioService {
 	@Override
 	public List<Anuncio> list_all_by_user(String user) {
 		
-//		Anuncio anuncio = 
 
 		return null;
+	}
+
+	@Override
+	public List<Anuncio> find_anuncio_by_user(Usuario usuario) {
+		
+		return null;
+//		 return ar.find_anuncio_by_user(usuario);
+
 	}
 
 }

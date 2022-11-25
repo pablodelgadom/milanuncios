@@ -3,6 +3,7 @@ package com.cursojava.proyectomilanuncios.interfaces;
 import java.util.List;
 
 import com.cursojava.proyectomilanuncios.model.Anuncio;
+import com.cursojava.proyectomilanuncios.model.Usuario;
 
 public interface IAnuncioService {
 	
@@ -10,6 +11,6 @@ public interface IAnuncioService {
 	public List<Anuncio> list_all();
 	public void delete_by_id(int id);
 	public List<Anuncio> list_all_by_user(String user);
-	
+	List<Anuncio> find_anuncio_by_user(Usuario usuario);
 
 }
