@@ -15,9 +15,9 @@
 			<!-- Account Number field -->
 			
 			<div class="form-group">
-				<label for="id_categoria" class="control-label col-xs-2">ID
+				<label for="id_categoria" class="control-label col-xs-2">
 				</label> <input type="text" class="form-control" id="id_categoria"
-					th:field="*{id_categoria}" style="width: 10em;" readonly/> <span
+					th:field="*{id_categoria}" style="width: 10em;" hidden/> <span
 					th:if="${#fields.hasErrors('id_categoria')}"
 					style="color: red; font-size: smaller" th:errors="*{id_categoria}"></span>
 

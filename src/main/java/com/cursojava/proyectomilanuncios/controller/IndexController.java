@@ -26,7 +26,7 @@ public class IndexController {
 	public String list_all_categorias(Model model) {
 
 		List<Categoria> categorias = categoriaService.list_all_categorias();
-		List<CategoriaDTO> categoriasdto = new ArrayList();
+		List<CategoriaDTO> categoriasdto = new ArrayList<CategoriaDTO>();
 		for (Categoria categoria : categorias) {
 			CategoriaDTO categoriadto = new CategoriaDTO(categoria.getId_categoria(), categoria.getDescripcion());
 			categoriasdto.add(categoriadto);

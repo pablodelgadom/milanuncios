@@ -62,7 +62,7 @@ public class UsuarioController {
 					return "panel_admin";
 				}
 				if (r.getRole().equals("us")) {
-					return "panel_usuario";
+					return "listado_anuncio_by_user";
 				}
 
 			} else

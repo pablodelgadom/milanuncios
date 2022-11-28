@@ -10,24 +10,32 @@
 
 	<div class="container">
 
-		<form action="#" th:object="${categoria_v}" method="POST"
-			th:action="@{/categorias/create}" class="form-horizontal">
+		<form action="#" th:object="${anuncio_v}" method="POST"
+			th:action="@{/anuncios/update}" class="form-horizontal">
 			<!-- Account Number field -->
+
 			<div class="form-group">
-				<label for="id_categoria" class="control-label col-xs-2">
-				</label> <input type="text" class="form-control" id="id_categoria"
-					th:field="*{id_categoria}" style="width: 10em;" hidden/> <span
-					th:if="${#fields.hasErrors('descripcion')}"
-					style="color: red; font-size: smaller" th:errors="*{id_categoria}"></span>
+				<label for="descripcion" class="control-label col-xs-2">Titulo
+				</label> <input type="text" class="form-control" id="password"
+					th:field="*{titulo}" style="width: 10em;" /> <span
+					th:if="${#fields.hasErrors('titulo')}"
+					style="color: red; font-size: smaller" th:errors="*{titulo}"></span>
 
 			</div>
-
 			<div class="form-group">
 				<label for="descripcion" class="control-label col-xs-2">Descripcion
-				</label> <input type="text" class="form-control" id="descripcion"
+				</label> <input type="text" class="form-control" id="password"
 					th:field="*{descripcion}" style="width: 10em;" /> <span
 					th:if="${#fields.hasErrors('descripcion')}"
 					style="color: red; font-size: smaller" th:errors="*{descripcion}"></span>
+
+			</div>
+			<div class="form-group">
+				<label for="descripcion" class="control-label col-xs-2">Precio
+				</label> <input type="text" class="form-control" id="password"
+					th:field="*{precio}" style="width: 10em;" /> <span
+					th:if="${#fields.hasErrors('precio')}"
+					style="color: red; font-size: smaller" th:errors="*{precio}"></span>
 
 			</div>
 

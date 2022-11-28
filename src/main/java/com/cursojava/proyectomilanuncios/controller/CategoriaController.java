@@ -56,7 +56,10 @@ public class CategoriaController {
 	
 	@GetMapping("/createForm")
 	public String categoriasForm(Model model) {
-		model.addAttribute("categoria_v", new Categoria_v());
+		Categoria_v c_v = new Categoria_v();
+		int nuevoId = categoriaService.list_all_categorias().size()+1;
+		c_v.setId_categoria(""+nuevoId);
+		model.addAttribute("categoria_v", c_v);
 		return "categoria_create";
 	}
 

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="Base :: head">
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<nav th:replace="Base :: nav"></nav>
+<body>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">Titulo</th>
+				<th scope="col">Descripcion</th>
+				<th scope="col">Precio</th>
+				<th scope="col">Usuario</th>
+			</tr>
+		</thead>
+
+		<tbody>
+
+			<tr th:each="c : ${anuncios}">
+				<td th:text="${c.titulo}"></td>
+				<td th:text="${c.descripcion}"></td>
+				<td th:text="${c.precio}"></td>
+				<td th:text="${c.user}"></td>
+			</tr>
+
+		</tbody>
+	</table>
+
+	<span th:text="${mensaje}"></span>
+</body>
+
+
+</body>
+</html>

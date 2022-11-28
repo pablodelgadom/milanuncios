@@ -1,11 +1,10 @@
 package com.cursojava.proyectomilanuncios.controller;
 
-import java.sql.Date;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,28 +20,32 @@ import com.cursojava.proyectomilanuncios.interfaces.IAnuncioService;
 import com.cursojava.proyectomilanuncios.interfaces.ICategoriaService;
 import com.cursojava.proyectomilanuncios.interfaces.IUsuarioService;
 import com.cursojava.proyectomilanuncios.model.Anuncio;
+import com.cursojava.proyectomilanuncios.model.Categoria;
+import com.cursojava.proyectomilanuncios.model.Usuario;
+import com.cursojava.proyectomilanuncios.service.AnuncioService;
+import com.cursojava.proyectomilanuncios.service.CategoriaService;
+import com.cursojava.proyectomilanuncios.service.UsuarioService;
 import com.cursojava.proyectomilanuncios.util.Anuncio_v;
+import com.cursojava.proyectomilanuncios.util.Categoria_v;
 import com.cursojava.proyectomilanuncios.util.FindAnuncioForm;
-import com.cursojava.proyectomilanuncios.util.Usuario_v;
 
 @Controller
 @RequestMapping("/anuncios")
 public class AnuncioController {
 
 	@Autowired
-	IAnuncioService anuncioService;
+	AnuncioService anuncioService;
 
 	@Autowired
-	ICategoriaService categoriaService;
-	
+	CategoriaService categoriaService;
+
 	@Autowired
-	IUsuarioService usuarioService;
-	
+	UsuarioService usuarioService;
 
 	@GetMapping("/byCategoria/{id_categoria}")
 	public String AnunciosByCategoria(@PathVariable("id_categoria") int id_categoria, Model model) {
 		List<Anuncio> anuncios = anuncioService.find_by_id_categoria(id_categoria);
-		List<AnuncioDTO> anunciosdto = new ArrayList();
+		List<AnuncioDTO> anunciosdto = new ArrayList<AnuncioDTO>();
 
 		for (Anuncio anuncio : anuncios) {
 
@@ -52,26 +55,28 @@ public class AnuncioController {
 			anunciosdto.add(anunciodto);
 		}
 		model.addAttribute("anuncios", anunciosdto);
-		return "/listado_anuncio_by_categoria";
+		return "/listado_anuncios";
 
 	}
-	
-//	@GetMapping("/byCategoria/{user}")
-//	public String find_anuncio_by_user(@PathVariable("user") String user, Model model) {
-//		List<Anuncio> anuncios = anuncioService.find_anuncio_by_user(user);
-//		List<AnuncioDTO> anunciosdto = new ArrayList();
-//
-//		for (Anuncio anuncio : anuncios) {
-//
-//			AnuncioDTO anunciodto = new AnuncioDTO(anuncio.getId_anuncio(), anuncio.getId_categoria(),
-//					anuncio.getFecha(), anuncio.getTitulo(), anuncio.getDescripcion(), anuncio.getPrecio(),
-//					anuncio.getUser());
-//			anunciosdto.add(anunciodto);
-//		}
-//		model.addAttribute("anuncios", anunciosdto);
-//		return "/listado_anuncio_by_categoria";
-//
-//	}
+
+	@GetMapping("/panelUser")
+	public String find_anuncio_by_user(Model model, HttpSession sesion) {
+
+		Usuario u = (Usuario) sesion.getAttribute("user");
+		List<Anuncio> anuncios = anuncioService.find_anuncio_by_user(u.getUser());
+		List<AnuncioDTO> anunciosdto = new ArrayList<AnuncioDTO>();
+
+		for (Anuncio anuncio : anuncios) {
+
+			AnuncioDTO anunciodto = new AnuncioDTO(anuncio.getId_anuncio(), anuncio.getId_categoria(),
+					anuncio.getFecha(), anuncio.getTitulo(), anuncio.getDescripcion(), anuncio.getPrecio(),
+					anuncio.getUser());
+			anunciosdto.add(anunciodto);
+		}
+		model.addAttribute("anuncios", anunciosdto);
+		return "/listado_anuncio_by_user";
+
+	}
 
 	@GetMapping("/panelAdmin")
 	public String panelAdmin(Model model) {
@@ -99,8 +104,19 @@ public class AnuncioController {
 		return panelAdmin(model);
 
 	}
-	
-	
+
+	@GetMapping("/delete2/{id_anuncio}")
+	public String delete_categoria2(@PathVariable("id_anuncio") int id_anuncio, Model model, HttpSession sesion) {
+		try {
+			anuncioService.delete_by_id(id_anuncio);
+		} catch (Exception e) {
+			System.out.println(e);
+			model.addAttribute("mensaje", "no se puede borrar la categoria");
+		}
+
+		return find_anuncio_by_user(model, sesion);
+
+	}
 
 	@GetMapping("/anuncio_created")
 	public String alta_anuncio(Model model) {
@@ -109,29 +125,29 @@ public class AnuncioController {
 		return "anuncio_created";
 
 	}
-	
-	@PostMapping("/grabar_anuncio")
-	public  String grabar_anuncio(Model model, Anuncio_v anuncio_v, BindingResult result) {
-		anuncio_v.validate(result);
-			if(result.hasErrors()) {
-				return "anuncio_created";
-			}else {
-				
-//				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-//				Date  fecha = (Date) format.parse(anuncio_v.getFecha());
-				
-				Anuncio anuncio = new Anuncio(Integer.parseInt(anuncio_v.getId_anuncio()),Integer.parseInt(anuncio_v.getId_categoria()),anuncio_v.getFecha(),anuncio_v.getTitulo(),anuncio_v.getDescripcion(),Double.parseDouble(anuncio_v.getPrecio()),anuncio_v.getUser());
-				anuncioService.save(anuncio);
 
-			}
-			model.addAttribute("anuncio_v", new Anuncio_v());
-			return "/panel_usuario";
-			
+	@PostMapping("/grabar_anuncio")
+	public String grabar_anuncio(Model model, Anuncio_v anuncio_v, BindingResult result, HttpSession sesion) {
+		anuncio_v.validate(result);
+		if (result.hasErrors()) {
+			return "anuncio_created";
+		} else {
+
+			// SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+//				Date  fecha = (Date) format.parse(anuncio_v.getFecha());
+
+			Usuario user = (Usuario) sesion.getAttribute("user");
+
+			Anuncio anuncio = new Anuncio(0, Integer.parseInt(anuncio_v.getId_categoria()), "2022-11-28",
+					anuncio_v.getTitulo(), anuncio_v.getDescripcion(), Double.parseDouble(anuncio_v.getPrecio()),
+					user.getUser());
+			anuncioService.save(anuncio);
+
+		}
+		model.addAttribute("anuncio_v", new Anuncio_v());
+		return find_anuncio_by_user(model, sesion);
+
 	}
-		
-	
-	
-	
 
 	@PostMapping("buscar_anuncios")
 	public String buscar_anuncios(Model model, FindAnuncioForm findAnuncioForm) {
@@ -144,7 +160,27 @@ public class AnuncioController {
 			anuncios_dto.add(anuncioDto);
 		}
 		model.addAttribute("anuncios", anuncios_dto);
-		return "listado_anuncio_by_categoria";
+		return "listado_anuncio_by_user";
+	}
+
+	@GetMapping("/editar/{id_anuncio}")
+	public String editar_anuncio(@PathVariable("id_anuncio") int id_anuncio, Model model) {
+		Anuncio c = anuncioService.find_by_id(id_anuncio);
+		model.addAttribute("anuncio_v", new Anuncio_v("" + c.getId_anuncio(),""+c.getCategoria(),c.getFecha(), c.getTitulo(),c.getDescripcion(),String.valueOf(c.getPrecio()),c.getUser()));
+		return "anuncio_update";
+	}
+
+	@PostMapping("/update")
+	public String modificar(Model model, Anuncio_v anuncio_v, BindingResult result, HttpSession sesion) {
+		anuncio_v.validate(result);
+		if (!result.hasErrors()) {
+			Anuncio a = new Anuncio(Integer.parseInt(anuncio_v.getId_anuncio()),Integer.parseInt(anuncio_v.getId_categoria()),anuncio_v.getFecha(),anuncio_v.getTitulo(), anuncio_v.getDescripcion(),Double.parseDouble(anuncio_v.getPrecio()),anuncio_v.getUser());
+			anuncioService.save(a);
+			model.addAttribute("anuncio_v", new Anuncio_v());
+			model.addAttribute("mensaje", "modificado correctamente");
+			return find_anuncio_by_user(model, sesion);
+		}
+		return find_anuncio_by_user(model, sesion);
 	}
 
 }

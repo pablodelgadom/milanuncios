@@ -1,5 +1,6 @@
 package com.cursojava.proyectomilanuncios.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,12 +57,18 @@ public class AnuncioService implements IAnuncioService {
 	}
 
 	@Override
-	public List<Anuncio> find_anuncio_by_user(Usuario usuario) {
+	public List<Anuncio> find_anuncio_by_user(String usuario) {
 		
-		return null;
-//		 return  ar.find_anuncio_by_user(usuario);
-
+		List<Anuncio> anuncios;
+		Usuario usuarioaux = usuariorepository.findById(usuario).orElse(null);
+		if (usuarioaux == null) {
+			return null;
+		} else {
+			anuncios = new ArrayList<Anuncio>(usuarioaux.getAnuncios());
+			return anuncios;
+		}
 	}
+
 
 	@Override
 	public List<Anuncio> find_constaint_by_titulo(String titulo) {
@@ -73,6 +80,11 @@ public class AnuncioService implements IAnuncioService {
 	public void save(Anuncio anuncio) {
 		ar.save(anuncio);
 		
+	}
+
+	@Override
+	public Anuncio find_by_id(int id) {
+		return ar.findById(id).orElse(null);
 	}
 
 	

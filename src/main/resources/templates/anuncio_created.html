@@ -15,18 +15,18 @@
 
 		<form action="#" th:object="${anuncio_v}" method="POST"
 			th:action="@{grabar_anuncio}" class="form-horizontal">
-			<!-- Account Number field -->s
+			<!-- Account Number field -->
 			<div class="form-group">
-				<label for="number">Id_anuncio</label> <input type="text"
-					class="form-control" id="id_alumno" th:field="*{id_anuncio}"
-					style="width: 10em;" /> <span th:if="${#fields.hasErrors('id_anuncio')}"
+				<input type="text"
+					class="form-control" id="id_anuncio" th:field="*{id_anuncio}"
+					style="width: 10em;" hidden/> <span th:if="${#fields.hasErrors('id_anuncio')}"
 					style="color: red; font-size: smaller" th:errors="*{id_anuncio}">Incorrect
 					data</span>
 			</div>
 
 
 			<div class="form-group">
-				<label for="descripcion" class="control-label col-xs-2">Id_categoria
+				<label for="descripcion" class="control-label col-xs-2">Categoria
 				</label> <input type="text" class="form-control" id="nombre"
 					th:field="*{id_categoria}" style="width: 10em;" /> <span
 					th:if="${#fields.hasErrors('id_categoria')}"
@@ -38,7 +38,7 @@
 			<div class="form-group">
 				<label for="id" class="control-label col-xs-2">Fecha </label> <input
 					type="text" class="form-control" id="id" th:field="*{fecha}"
-					style="width: 10em;" /> <span
+					style="width: 10em;" hidden/> <span
 					th:if="${#fields.hasErrors('fecha')}"
 					style="color: red; font-size: smaller" th:errors="*{fecha}"></span>
 
@@ -74,7 +74,7 @@
 			<div class="form-group">
 				<label for="id" class="control-label col-xs-2">Usuario </label> <input
 					type="text" class="form-control" id="id" th:field="*{user}"
-					style="width: 10em;" /><span
+					style="width: 10em;" hidden/><span
 					th:if="${#fields.hasErrors('user')}"
 					style="color: red; font-size: smaller" th:errors="*{user}"></span>
 

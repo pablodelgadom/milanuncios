@@ -1,12 +1,15 @@
 package com.cursojava.proyectomilanuncios.model;
 
+import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -23,6 +26,10 @@ public class Usuario {
 	@ManyToMany()
 	@JoinTable(name = "usuarios_roles", joinColumns = @JoinColumn(name = "user"), inverseJoinColumns = @JoinColumn(name = "role"))
 	private Set<Role> roles;
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "user", referencedColumnName = "user")
+	private List<Anuncio> anuncios;
 	
 	
 	public Usuario() {
@@ -80,4 +87,14 @@ public class Usuario {
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
 	}
+
+	public List<Anuncio> getAnuncios() {
+		return anuncios;
+	}
+
+	public void setAnuncios(List<Anuncio> anuncios) {
+		this.anuncios = anuncios;
+	}
+	
+	
 }
